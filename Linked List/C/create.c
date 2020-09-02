@@ -47,6 +47,7 @@ void display(struct LinkedList *node){
         i++;
         node = node->next;
     }
+    printf("Data at node %d is %d \n",i,node->info);
 }
 int main(){
 
