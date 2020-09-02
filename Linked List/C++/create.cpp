@@ -46,6 +46,7 @@ void display(struct LINKEDLIST *node){
         i++;
         node = node->next;
     }
+    cout<<"Data at node "<<i<<" is "<<node->info<<" \n";
 }
 int main(){
     struct LINKEDLIST *start;
