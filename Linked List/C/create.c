@@ -30,7 +30,6 @@ void create(struct LinkedList *node){
             node->next = NULL;
             j++;
         }
-        //node->next = NULL;
 
         printf("Do you want to enter for more nodes?");
         printf("Enter Y for yes , any other key to exit:");
