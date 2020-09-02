@@ -44,17 +44,18 @@ void create(struct DoubleLinkedList *node){
 void display(struct DoubleLinkedList *node){
     int i=1;
     printf("\n");
-    printf("printing from starting: \n");
+    printf("printing from starting of double linked list: \n");
     while(node->next!=NULL){
         printf("Data at node %d is %d \n",i,node->info);
         i++;
         node = node->next;
     }
-    node = node->prev;
+    printf("Data at node %d is %d \n",i,node->info);
+
     printf("\n");
-    printf("printing from Last: \n");
+    printf("printing from Last of double linked list: \n");
     while(node->prev!=NULL){
-        printf("Data at node %d is %d \n",i-1,node->info);
+        printf("Data at node %d is %d \n",i,node->info);
         i--;
         node = node->prev;
     }
