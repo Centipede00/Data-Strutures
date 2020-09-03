@@ -68,12 +68,10 @@ int main(){
         printf("1.Insertion at the beginning of the List\n");
         printf("2.Insertion at the End of the List\n");
         printf("3.Insertion at a particular position\n");
-        printf("4.Insertion After a particular node\n");
         printf("Enter any option(1-4):");
         scanf("%d",&option);
 
-        switch (option)
-        {
+        switch (option){
         case 1:
             new->next = node;
             node = new;
@@ -99,7 +97,6 @@ int main(){
                 if(j==position-1){
                     new->next = node->next;
                     node->next = new;
-                    //node = new;
                     found =1;
                 }
                 else{
@@ -109,10 +106,6 @@ int main(){
             }
             if(found !=1)
             printf("Invalid position\n");
-            break;
-
-        case 4:
-            
             break;
 
         default:printf("Invalid option\n");
