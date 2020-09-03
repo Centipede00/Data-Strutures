@@ -51,16 +51,15 @@ void display(struct LinkedList *node){
 }
 int main(){
 
-    struct LinkedList *start,*new;
-    start = (struct LinkedList*) malloc(1 * sizeof(struct LinkedList));
+    struct LinkedList *start,*new,*node;
+    node = (struct LinkedList*) malloc(1 * sizeof(struct LinkedList));
     new = (struct LinkedList*) malloc(1 * sizeof(struct LinkedList));
-    create(start);
-    display(start);
-
-    int option;
+    create(node);
+    display(node);
+    start = node;
+    int option,position,found;
+    int j=1;
     char ch;
-    do
-    {
         printf("Enter data for new node:");
         scanf("%d",&new->info);
         if(new->next==NULL)
@@ -70,42 +69,46 @@ int main(){
         printf("2.Insertion at the End of the List\n");
         printf("3.Insertion at a particular position\n");
         printf("4.Insertion After a particular node\n");
-        printf("Enter any option(1-4):\n");
+        printf("Enter any option(1-4):");
         scanf("%d",&option);
 
         switch (option)
         {
         case 1:
-            new->next = start;
-            start = new;
-            printf("Case -1\n");
+            new->next = node;
+            node = new;
+            start = node;
             break;
 
         case 2:
-            /* do
-            {
-                start = start->next;
-                if(start->next == NULL){
-                    start->next = new;
-                    new->next = NULL;
-                }
-            } while (new->next != NULL); */
             while(new->next != NULL){
-                if(start->next == NULL){
-                    printf("%d->next == NULL\n",start->info);
+                if(node->next == NULL){
                     new->next = NULL;
-                    start->next = new;
+                    node->next = new;
                 }
                 else{
-                    printf("%d->next != NULL\n",start->info);
-                    start = start->next;
+                    node = node->next;
                 }
             }
-            
             break;
         
         case 3:
-            
+            printf("Enter position,at which node will be inserted:");
+            scanf("%d",&position);
+            for (int i=1; i <position; i++){
+                if(j==position-1){
+                    new->next = node->next;
+                    node->next = new;
+                    //node = new;
+                    found =1;
+                }
+                else{
+                    node = node->next;
+                    j++;
+                }
+            }
+            if(found !=1)
+            printf("Invalid position\n");
             break;
 
         case 4:
@@ -116,13 +119,6 @@ int main(){
             break;
         }
         display(start);
-        printf("Do you want to enter for more nodes?");
-        printf("Enter Y for yes , any other key to exit:");
-        fflush(stdin);
-        scanf("%c",&ch);
-    } while (ch == 'y' || ch == 'Y');
-    
-
 
     return 0;
 }
