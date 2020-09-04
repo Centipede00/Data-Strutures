@@ -12,6 +12,8 @@ void create(struct NODE *node,int nodes){
             node->next = NULL;
         else{
             node->next = (struct NODE*) malloc(sizeof(struct NODE));
+            if(node->next == NULL)
+                printf("Error\n");
             node = node->next;
         }
     }
