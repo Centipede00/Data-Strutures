@@ -5,6 +5,7 @@ struct DoubleLinkedList{
     struct DoubleLinkedList *prev;
     struct DoubleLinkedList *next;
 };
+struct DoubleLinkedList *start;
 void create(struct DoubleLinkedList *node){
     int j=1;
     int value;
@@ -63,10 +64,11 @@ void display(struct DoubleLinkedList *node){
 }
 int main(){
 
-    struct DoubleLinkedList *start;
-    start = (struct DoubleLinkedList*) malloc(1 * sizeof(struct DoubleLinkedList));
-    start->prev = NULL;
-    create(start);
+    struct DoubleLinkedList *node;
+    node = (struct DoubleLinkedList*) malloc(1 * sizeof(struct DoubleLinkedList));
+    node->prev = NULL;
+    start = node;
+    create(node);
     display(start);
 
     return 0;
