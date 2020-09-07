@@ -49,7 +49,7 @@ void display(struct LINKEDLIST *node){
     cout<<"Data at node "<<i<<" is "<<node->info<<" \n";
 }
 int main(){
-    struct LINKEDLIST *start;
+    LINKEDLIST *start;
 
     start = (struct LINKEDLIST*) malloc(1*sizeof(struct LINKEDLIST));
 
