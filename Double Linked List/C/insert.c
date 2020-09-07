@@ -11,13 +11,18 @@ void searchinsert(struct Node *node,int data){
     while(node->next!=NULL){
         if(node->info==data){
             insert(node,k+1);
+            found = 1;
             break;
         }
         found = 0;
         node = node->next;
         k++;
     }
-    if(found == 0 ){
+    if(node->info==data){
+            insert(node,k+1);
+            found = 1;
+    }
+    else if(found == 0 ){
         printf("%d is not present inside Double Linked List\n",data);
     }
 }
@@ -37,6 +42,7 @@ void insert(struct Node *node,int position){
         newNode->prev = NULL;
         p->prev = newNode;
         start = newNode;
+        found =1;
     }
     else{
         while((p->next!=NULL) && (k<position)){
@@ -48,6 +54,7 @@ void insert(struct Node *node,int position){
             p->next = newNode;
             newNode->prev = p;
             newNode->next = NULL;
+            found = 1;
         }
         else{
             newNode->next = p;
