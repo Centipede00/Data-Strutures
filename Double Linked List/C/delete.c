@@ -22,8 +22,6 @@ void searchDelete(struct Node *node,int data){
             delete(node,k);
             found = 1;
     }
-
-
     if(found == 0 ){
         printf("%d is not present inside Double Linked List\n",data);
     }
