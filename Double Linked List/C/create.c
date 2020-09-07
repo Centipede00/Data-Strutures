@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-struct DoubleLinkedList{
+struct Node{
     int info;
-    struct DoubleLinkedList *prev;
-    struct DoubleLinkedList *next;
+    struct Node *prev;
+    struct Node *next;
 };
-struct DoubleLinkedList *start;
-void create(struct DoubleLinkedList *node){
+struct Node *start;
+void create(struct Node *node){
     int j=1;
     int value;
     char ch;
@@ -23,7 +23,7 @@ void create(struct DoubleLinkedList *node){
         break;
 
         for (int i = 0; i < value; i++){
-            node->next = (struct DoubleLinkedList*) malloc(1 * sizeof(struct DoubleLinkedList));
+            node->next = (struct Node*) malloc(1 * sizeof(struct Node));
             node->next->prev = node;
             if(node->next == NULL)
                 printf("Error\n");
@@ -42,7 +42,7 @@ void create(struct DoubleLinkedList *node){
     } while (ch == 'y' || ch =='Y');
     
 }
-void display(struct DoubleLinkedList *node){
+void display(struct Node *node){
     int i=1;
     printf("\n");
     printf("printing from starting of double linked list: \n");
@@ -64,8 +64,8 @@ void display(struct DoubleLinkedList *node){
 }
 int main(){
 
-    struct DoubleLinkedList *node;
-    node = (struct DoubleLinkedList*) malloc(1 * sizeof(struct DoubleLinkedList));
+    struct Node *node;
+    node = (struct Node*) malloc(1 * sizeof(struct Node));
     node->prev = NULL;
     start = node;
     create(node);
