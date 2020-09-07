@@ -1,11 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-struct DOUBLELINKEDLIST {
+struct Node {
     int info;
-    struct DOUBLELINKEDLIST *prev;
-    struct DOUBLELINKEDLIST *next;
+    struct Node *prev;
+    struct Node *next;
 };
-void create(struct DOUBLELINKEDLIST *node){
+void create(struct Node *node){
     int j=1;
     int value;
     char ch;
@@ -22,7 +22,7 @@ void create(struct DOUBLELINKEDLIST *node){
         break;
 
         for (int i = 0; i < value; i++){
-            node->next = (struct DOUBLELINKEDLIST*) malloc(1 * sizeof(struct DOUBLELINKEDLIST));
+            node->next = (struct Node*) malloc(1 * sizeof(struct Node));
             node->next->prev = node;
             if(node->next == NULL)
                 cout<<"Error\n";
@@ -40,7 +40,7 @@ void create(struct DOUBLELINKEDLIST *node){
         
     } while (ch == 'y' || ch =='Y');
 }
-void display(struct DOUBLELINKEDLIST *node){
+void display(struct Node *node){
     int i=1;
     cout<<"\n printing from Starting of the Double Linked List:\n";
     while(node->next!=NULL){
@@ -59,9 +59,9 @@ void display(struct DOUBLELINKEDLIST *node){
     cout<<"Data at node "<<i<<" is "<<node->info<<" \n";
 }
 int main(){
-    DOUBLELINKEDLIST *start;
+    Node *start;
 
-    start = (struct DOUBLELINKEDLIST*) malloc(1*sizeof(struct DOUBLELINKEDLIST));
+    start = (struct Node*) malloc(1*sizeof(struct Node));
     start->prev = NULL;
     create(start);
     display(start);
