@@ -59,7 +59,7 @@ void display(struct DOUBLELINKEDLIST *node){
     cout<<"Data at node "<<i<<" is "<<node->info<<" \n";
 }
 int main(){
-    struct DOUBLELINKEDLIST *start;
+    DOUBLELINKEDLIST *start;
 
     start = (struct DOUBLELINKEDLIST*) malloc(1*sizeof(struct DOUBLELINKEDLIST));
     start->prev = NULL;
