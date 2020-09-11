@@ -16,7 +16,7 @@ void push(struct Stack *s,int data){
     }
 }
 int pop(struct Stack *s){
-    int data = -1;      //initializing data with -1,if condition satisfies it will return -1,else it will last element of stack
+    int data = -1;      //initializing data with -1,if condition satisfies it will return -1,else it will return last element of stack
     if(s->top == -1){
         printf("Stack Overflow\n");
         printf("No data is present inside Stack\n");
@@ -28,7 +28,7 @@ int pop(struct Stack *s){
     return data;
 }
 int peek(struct Stack s,int position){
-    int data = -1;      //initializing data with -1,if condition satisfies it will return -1,else it will last element of stack
+    int data = -1;      //initializing data with -1,if condition satisfies it will return -1,else it will return the disired element
     if(s.top-position+1 < 0){
         printf("Invalid Position\n");
     }
