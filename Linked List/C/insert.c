@@ -6,7 +6,7 @@ struct NODE{
 };
 struct NODE *head;
 void insert(struct NODE *,int);
-int display(struct NODE *);
+void display(struct NODE *);
 void searchInsert(struct NODE *node,int data){
     int found=0,k=1;
     while (node!=NULL){
@@ -66,7 +66,7 @@ void create(struct NODE *node,int nodes){
         }
     }
 }
-int display(struct NODE *node){
+void display(struct NODE *node){
     int i=1;
     printf("\nDetails of current Linked List is:\n");
     printf("Data present inside Nodes:\n");
@@ -87,7 +87,7 @@ int main(){
     node->next = NULL;
     head = node;
     create(node,nodes);
-    nodes = display(head);
+    display(head);
     while (option!=5){
         printf("\n\tOperations Available:\n");
         printf("1.Insertion at the beginning of the List\n");
@@ -119,7 +119,7 @@ int main(){
         else{
             printf("Invalid Option\n");
         }
-        nodes = display(head);
+        display(head);
         system("pause");
     }
     return 0;
