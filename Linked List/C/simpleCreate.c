@@ -4,6 +4,9 @@ struct NODE{
     int info;
     struct NODE *next;
 };
+struct NODE *head;
+void create(struct NODE *);
+void display(struct NODE *);
 void create(struct NODE *node){
     int nodes;
     printf("How many nodes do you want to create?:");
@@ -20,11 +23,12 @@ void create(struct NODE *node){
             node = node->next;
         }
     }
+
 }
 void display(struct NODE *node){
     int i=1;
-    printf("Details of current Linked List is:\n");
-    printf("Data present inside Nodes:\n");
+    printf("\n\nDetails of current Linked List is:\n");
+    printf("\nData present inside Nodes:\n");
     while(node->next!=NULL){
         printf("Node %d: %d\n",i,node->info);
         node = node->next;
@@ -34,7 +38,7 @@ void display(struct NODE *node){
     printf("Number of nodes present:%d\n",i);
 }
 int main(){
-    struct NODE *head,*node;
+    struct NODE *node;
     node = (struct NODE*) malloc(sizeof(struct NODE));
     node->next = NULL;
     head = node;
