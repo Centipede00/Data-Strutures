@@ -5,7 +5,7 @@ struct NODE{
     int key;
     struct NODE *next;
 };
-struct Node *head;
+struct NODE *head;
 void create(struct NODE *node,int nodes){
     for(int i=0;i<nodes;i++){
         printf("Enter data for Node %d:",i+1);
