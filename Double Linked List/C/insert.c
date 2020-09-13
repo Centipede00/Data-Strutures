@@ -6,19 +6,25 @@ struct Node{
     struct Node *next;
 };
 struct Node *start;
-void searchinsert(struct Node *node,int data){
-    int found,k=1;
+int nodes;
+
+void insert(struct Node *,int);
+void searchInsert(struct Node*,int);
+void display(struct Node*);
+void create(struct Node *,int);
+
+void searchInsert(struct Node *node,int data){
+    int found=0,k=1;
     while(node->next!=NULL){
         if(node->info==data){
             insert(node,k+1);
             found = 1;
             break;
         }
-        found = 0;
         node = node->next;
         k++;
     }
-    if(node->info==data){
+    if((node->info==data)&&(found==0)){       //if data is present in last node
             insert(node,k+1);
             found = 1;
     }
@@ -29,7 +35,7 @@ void searchinsert(struct Node *node,int data){
 void insert(struct Node *node,int position){
     struct Node *p,*q,*newNode;
     p = start;
-    int found,k=1;
+    int k=1;
     newNode = (struct Node*) malloc(sizeof(struct Node));
     if(newNode == NULL){
         printf("MEMORY ERROR\n");
@@ -42,7 +48,6 @@ void insert(struct Node *node,int position){
         newNode->prev = NULL;
         p->prev = newNode;
         start = newNode;
-        found =1;
     }
     else{
         while((p->next!=NULL) && (k<position)){
@@ -50,48 +55,37 @@ void insert(struct Node *node,int position){
             q=p;
             p = p->next;
         }
-        if(p->next==NULL){
+        if((p->next==NULL)&&(k<position)){
             p->next = newNode;
             newNode->prev = p;
             newNode->next = NULL;
-            found = 1;
         }
         else{
             newNode->next = p;
             newNode->prev = q;
             q->next = newNode;
             p->prev = newNode;
-            found = 1;
         }
     }
-    if(found!=1){
-        printf("%d position exceeds the size of Double Linked List size\n",position);
-    }
-    else
-    k = display(start);
+    nodes++;
 }
-void create(struct Node *node){
+void create(struct Node *node,int nodes){
     int j=1;
-    int value;
-
-    printf("How many node do you want to enter?:");
-    scanf("%d",&value);
-
-        for (int i = 0; i < value; i++){
-            printf("Enter data for node %d:",j);
-            scanf("%d",&node->info);
-            node->next = NULL;
-            j++;
-            if(i+1!=value){
-                node->next = (struct Node*) malloc(1 * sizeof(struct Node));
-                node->next->prev = node;
-                if(node->next == NULL)
-                    printf("Error\n");
-                node = node->next;
-            }
+    for (int i = 0; i < nodes; i++){
+        printf("Enter data for node %d:",j);
+        scanf("%d",&node->info);
+        node->next = NULL;
+        j++;
+        if(i+1!=nodes){
+            node->next = (struct Node*) malloc(1 * sizeof(struct Node));
+            node->next->prev = node;
+            if(node->next == NULL)
+                printf("Error\n");
+            node = node->next;
         }
+    }
 }
-int display(struct Node *node){
+void display(struct Node *node){
     int i=1;
     printf("\n");
     printf("printing from starting of double linked list: \n");
@@ -101,57 +95,65 @@ int display(struct Node *node){
         node = node->next;
     }
     printf("Data at node %d is %d \n",i,node->info);
-    printf("Nodes present:%d\n",i);
+    printf("Nodes present:%d\n",nodes);
     printf("\n");
-    int j=1;
     printf("printing from Last of double linked list: \n");
     while(node->prev!=NULL){
         printf("Data at node %d is %d \n",i,node->info);
         i--;
-        j++;
         node = node->prev;
     }
     printf("Data at node %d is %d \n",i,node->info);
-    printf("Nodes present:%d\n",j);
+    printf("Nodes present:%d\n",nodes);
 
-    return j;
 }
 int main(){
 
     struct Node *node;
     node = (struct Node*) malloc(1 * sizeof(struct Node));
     node->prev = NULL;
-    create(node);
+    printf("How many node do you want to enter?:");
+    scanf("%d",&nodes);
+    create(node,nodes);
     start = node;
-    int nodes = display(start);
+    display(start);
     int option,position,data;
-    printf("\n\tOperations Available:\n");
+    while (option!=5){
+        printf("\n\tOperations Available:\n");
         printf("1.Insertion at the beginning of the List\n");
         printf("2.Insertion at the End of the List\n");
         printf("3.Insertion at a particular position\n");
         printf("4.Insertion after a given node\n");
-        printf("Enter any option(1-4):");
+        printf("5.Quit\n");
+        printf("Enter any option(1-5):");
         scanf("%d",&option);
-    switch (option){
-        case 1: insert(node,1);
-            break;
-
-        case 2:
+        if(option == 1){
+            insert(node,1);
+        }
+        else if(option ==2){
             insert(node,nodes+1);
-            break;
-        
-        case 3:printf("Enter the position to insert:");
-                scanf("%d",&position);
+        }
+        else if(option==3){
+            printf("Enter the position to insert:");
+            scanf("%d",&position);
+            if(position>nodes+1)
+                printf("Invalid Position,Postion exceeds than node numbers.\n");
+            else
                 insert(node,position);
-
-           break;
-        
-        case 4:printf("Enter the data of node,after which new node will be inserted:");
-                scanf("%d",&data);
-                searchinsert(node,data);
-            break;
-        default:printf("Invalid option\n");
+        }
+        else if(option==4){
+            printf("Enter the data of node,after which new node will be inserted:");
+            scanf("%d",&data);
+            searchInsert(node,data);
+        }
+        else if(option == 5){
             break;
         }
+        else{
+            printf("Invalid Option\n");
+        }
+        display(start);
+        system("pause");
+    }
     return 0;
 }
