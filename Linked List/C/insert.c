@@ -5,6 +5,7 @@ struct NODE{
     struct NODE *next;
 };
 struct NODE *head;
+int nodes;
 void insert(struct NODE *,int);
 void display(struct NODE *);
 void searchInsert(struct NODE *node,int data){
@@ -13,6 +14,7 @@ void searchInsert(struct NODE *node,int data){
         if(node->info==data){
             insert(head,k+1);
             found = 1;
+            break;
         }
         node = node->next;
         k++;
@@ -51,6 +53,7 @@ void insert(struct NODE *node,int position){
             newNode->next = p;
         }
     }
+    nodes++;
 }
 void create(struct NODE *node,int nodes){
     for(int i=0;i<nodes;i++){
@@ -75,19 +78,17 @@ void display(struct NODE *node){
         node = node->next;
         i++;
     }
-    printf("Number of nodes present in single Linked List:%d\n",i-1);
-    return i;
+    printf("Number of nodes present in single Linked List:%d\n",nodes);
 }
 int main(){
     struct NODE *node;
-    int nodes,option=0,position,data;
+    int option=0,position,data;
     printf("How many nodes do you want to create?:");
     scanf("%d",&nodes);
     node = (struct NODE*) malloc(sizeof(struct NODE));
     node->next = NULL;
     head = node;
     create(node,nodes);
-    display(head);
     while (option!=5){
         printf("\n\tOperations Available:\n");
         printf("1.Insertion at the beginning of the List\n");
@@ -95,23 +96,26 @@ int main(){
         printf("3.Insertion at a particular position\n");
         printf("4.Insertion after a given node\n");
         printf("5.Quit\n");
-        printf("Enter any option(1-4):");
+        printf("Enter any option(1-5):");
         scanf("%d",&option);
         if(option == 1){
-            insert(node,1);
+            insert(head,1);
         }
         else if(option ==2){
-            insert(node,nodes+1);
+            insert(head,nodes+1);
         }
         else if(option==3){
             printf("Enter the position to insert:");
             scanf("%d",&position);
-            insert(node,position);
+            if(position>nodes+1)
+                printf("Invalid Position,Postion exceeds than node numbers.\n");
+            else
+                insert(node,position);
         }
         else if(option==4){
             printf("Enter the data of node,after which new node will be inserted:");
             scanf("%d",&data);
-            searchInsert(node,data);
+            searchInsert(head,data);
         }
         else if(option == 5){
             break;
