@@ -37,11 +37,29 @@ int pop(Stack *s){
     }
     else {
         n = s->top;
+        data = n->data;
         s->top = s->top->next;
         s->pos--;
         free(n);
     }
     return data;
+}
+int peek(Stack s,int pos){
+    if(s.top == NULL){
+
+    }
+    else{
+        struct Node *n = s.top;
+        for(int i=0;n!=NULL && i<pos-1;i++)
+            n = n->next;
+        
+        if(n!=NULL)
+            return n->data;
+        else{
+            printf("Given position is greater than size of Stack\n");
+            return -1;
+        }
+    }
 }
 int stackTop(Stack s){
     if(s.top == NULL){
@@ -94,12 +112,13 @@ int main(){
         printf("\n\tOptions Available:\n");
         printf("1.Push an Element inside Stack\n");
         printf("2.Pop an element outside Stack\n");
-        printf("3.Get Stack Top,its element\n");
-        printf("4.Check weather stack is empty or not\n");
-        printf("5.Check weather stack is full or not\n");
-        printf("6.Display the details of Stack\n");
-        printf("7.Quit\n");
-        printf("Enter Any options between 1-7:");
+        printf("3.peek or get an Element of Stack\n");
+        printf("4.Get Stack Top,its element\n");
+        printf("5.Check weather stack is empty or not\n");
+        printf("6.Check weather stack is full or not\n");
+        printf("7.Display the details of Stack\n");
+        printf("8.Quit\n");
+        printf("Enter Any options between 1-8:");
         scanf("%d",&option);
 
         if (option==1){
@@ -115,25 +134,33 @@ int main(){
             system("pause");
         }
         else if (option==3){
+            printf("\nEnter the Position:");
+            scanf("%d",&pos);
+            data = peek(s,pos);
+            if(data!=-1)
+                printf("%d is present in %d position\n",data,pos);
+            system("pause");
+        }
+        else if (option==4){
             data = stackTop(s);
             if(data!=-1)
                 printf("%d is present at stack Top\n",data);
             system("pause");
         }
-        else if (option==4){
+        else if (option==5){
             isEmpty(s);
             system("pause");
         }
-        else if (option==5){
+        else if (option==6){
             isFull(s);
             system("pause");
         }
-        else if (option==6){
+        else if (option==7){
             printf("Details of Stack:\n");
             display(s);
             system("pause");
         }
-        else if (option==7){
+        else if (option==8){
             break;
         }
         else{
