@@ -9,7 +9,7 @@ typedef struct{
     int size;
 }Stack;
 Stack s;
-void push(Stack *s,char data){
+void push(char data){
     struct Node *n;
     n = (struct Node*) malloc(sizeof(struct Node));
     if(n == NULL){
@@ -17,27 +17,27 @@ void push(Stack *s,char data){
     }
     else{
         n->data = data;
-        if(s->top==NULL){
+        if(s.top==NULL){
             n->next = NULL;
-            s->top = n;
+            s.top = n;
         }
         else{
-            n->next = s->top;
-            s->top = n;
+            n->next = s.top;
+            s.top = n;
         }
     }
 }
 
-void pop(Stack *s){
+void pop(){
     struct Node *n;
-    if(s->top == NULL){
+    if(s.top == NULL){
         printf("Stack Overflow\n");
         printf("No data is present inside Stack\n");
         return;
     }
     else {
-        n = s->top;
-        s->top = s->top->next;
+        n = s.top;
+        s.top = s.top->next;
         free(n);
     }
 }
@@ -45,7 +45,7 @@ void pop(Stack *s){
 int isBalanced(char *arr){
     for (int i = 0; arr[i]!='\0'; i++){
         if(arr[i] == '(')
-            push(&s,arr[i]);
+            push(arr[i]);
         else if(arr[i] == ')'){
             if(s.top==NULL){
                 return 0;
