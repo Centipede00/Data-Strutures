@@ -7,12 +7,14 @@ struct Node{
 typedef struct{
     struct Node *front;
     struct Node *rear;
+    int size;
 }Queue;
 Queue q;
+int maxSize=0;
 void enqueue(Queue *q,int data){
     struct Node *temp = (struct Node*) malloc(sizeof(struct Node));
-    if(temp==NULL){
-        printf("No Memory inside heap\n");
+    if(temp==NULL||maxSize>q->size-1){
+        printf("stack is full,Overflow\n");
         return;
     }
     temp->data = data;
@@ -25,12 +27,13 @@ void enqueue(Queue *q,int data){
         q->rear->next = temp;
         q->rear = temp;
     }
+    maxSize++;
 }
 int dequeue(Queue *q){
     int x=-1;
     struct Node *temp;
     if(q->front==NULL){
-        printf("queue is empty\n");
+        printf("queue is empty,underflow\n");
         return x;
     }
     temp = q->front;
@@ -41,7 +44,7 @@ int dequeue(Queue *q){
 }
 void display(){
     if(q.front==NULL){
-        printf("queue is empty\n");
+        printf("queue is empty,underflow\n");
         return;
     }
     struct Node *temp=q.front;
@@ -55,6 +58,8 @@ int main(){
     q.front==NULL;
     q.rear==NULL;
     int option,data=0;
+    printf("Enter the size of the queue:");
+    scanf("%d",&q.size);
     while(1>0){
         printf("\tOptions Available:\n");
         printf("1.Insert an element into queue.\n");
